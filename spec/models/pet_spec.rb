@@ -12,4 +12,12 @@ describe Pet, type: :model do
 	it 'should be valid' do
 		expect(pet).to be_valid
 	end
+
+	describe 'with aliases' do
+		let(:pet_with_aliases) { create(:pet, :with_aliases) }
+
+		it 'should create 3 aliases' do
+			expect(pet_with_aliases.pet_aliases.count).to eq(3)
+		end
+	end
 end

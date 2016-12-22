@@ -5,7 +5,7 @@ FactoryGirl.define do
 		association :server, factory: :server
 
 		trait :with_serendipities do
-			pet_serendipitys { create_list :pet_serendipity, 5 }
+			pet_serendipities { create_list :pet_serendipity, 5 }
 		end
 	end
 end
