@@ -1,16 +1,12 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or any plugin's vendor/assets/javascripts directory can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file. JavaScript code in this file should be added after the last require_* statement.
-//
-// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
-// about supported directives.
-//
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+//= require angular.bootstrap
+//= require_tree ../templates
+//= require config
+//= require route/route.bootstrap
+//= require common/common.bootstrap
+//= require devise/devise.bootstrap
+//= require angular.material.bootstrap
+//= require applicationController
+//= require headerController
+//= require navigationController

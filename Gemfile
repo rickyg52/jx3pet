@@ -44,8 +44,10 @@ gem 'font_assets',               '~> 0.1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'database_cleaner'
   gem 'dotenv-rails'
   gem 'factory_girl_rails',      '~> 4.2'
+  gem 'rspec-rails',             '~> 3.2'
   gem 'rubocop',                 '0.35', require: false 
   gem 'shoulda-matchers',        '~> 2.8'
 end

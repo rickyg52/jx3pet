@@ -1,0 +1,16 @@
+//= require angular/angular
+//= require angular-ui-router/release/angular-ui-router
+//= require angular-resource/angular-resource
+//= require angular-rails-templates
+//= require angular-material/angular-material
+//= require angular-material-icons/angular-material-icons
+//= require angular-validation-match/dist/angular-validation-match
+//= require angular-touch/angular-touch
+//= require angular-superswipe/superswipe
+//= require angular-chart.js/dist/angular-chart.min
+//= require angular-cropme/cropme
+//= require underscore/underscore-min
+//= require angular-underscore/angular-underscore.min
+//= require psl/dist/psl
+//= require angular-timeago/dist/angular-timeago.min
+//= require angular-utils-pagination/dirPagination
