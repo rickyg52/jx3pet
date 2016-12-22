@@ -45,10 +45,10 @@ ActiveRecord::Schema.define(version: 20161222111003) do
     t.string  "name",   null: false
     t.integer "min_cd", null: false
     t.integer "max_cd", null: false
-    t.string  "text"
+    t.string  "guide"
   end
 
-  create_table "serendipitys", force: :cascade do |t|
+  create_table "serendipities", force: :cascade do |t|
     t.string  "name", null: false
     t.integer "cd"
   end

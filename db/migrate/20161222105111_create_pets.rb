@@ -4,7 +4,7 @@ class CreatePets < ActiveRecord::Migration[5.0]
    		t.string :name, null: false
    		t.integer :min_cd, null: false
    		t.integer :max_cd, null: false
-   		t.string :text
+   		t.string :guide
     end
   end
 end
