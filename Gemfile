@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'mjolnir', '~> 1.1.7', source: 'http://B3U5fzTniCxwgn4e19Cj@gem.fury.io/shirren/'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
