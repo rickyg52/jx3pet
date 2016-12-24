@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161223121345) do
+ActiveRecord::Schema.define(version: 20161224091924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,8 +30,10 @@ ActiveRecord::Schema.define(version: 20161223121345) do
   end
 
   create_table "groups", force: :cascade do |t|
-    t.integer "server_id", null: false
-    t.bigint  "group_num", null: false
+    t.integer "server_id",                                    null: false
+    t.bigint  "group_num",                                    null: false
+    t.string  "report_format", default: "{time} {alias} 502", null: false
+    t.index ["group_num"], name: "index_groups_on_group_num", using: :btree
     t.index ["server_id"], name: "index_groups_on_server_id", using: :btree
   end
 
@@ -43,12 +45,14 @@ ActiveRecord::Schema.define(version: 20161223121345) do
   end
 
   create_table "pet_serendipities", force: :cascade do |t|
-    t.integer  "pet_alias_id",                   null: false
     t.datetime "trigger_time",                   null: false
     t.bigint   "reporter",     default: 5499174, null: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.index ["pet_alias_id"], name: "index_pet_serendipities_on_pet_alias_id", using: :btree
+    t.integer  "pet_id",                         null: false
+    t.integer  "server_id",                      null: false
+    t.index ["pet_id"], name: "index_pet_serendipities_on_pet_id", using: :btree
+    t.index ["server_id"], name: "index_pet_serendipities_on_server_id", using: :btree
   end
 
   create_table "pets", force: :cascade do |t|
