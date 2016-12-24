@@ -4,5 +4,7 @@ class CreateServers < ActiveRecord::Migration[5.0]
     	t.string :name, null: false
     	t.string :region, null: false
     end
+
+    add_index :servers, :name
   end
 end
