@@ -27,6 +27,7 @@ gem 'bower-rails',               '~> 0.10'
 gem 'friendly_id',               '~> 5.1'
 gem 'devise',                    '~> 4.2'
 gem 'font-awesome-sass',         '~> 4.4'
+gem 'jquery-rails',              '~> 4.2.0'
 gem 'paperclip',                 '~> 4.3'
 gem 'representable',             '~> 2.3'
 gem 'rolify',                    '~> 4.1'
@@ -49,7 +50,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_girl_rails',      '~> 4.2'
   gem 'rspec-rails',             '~> 3.2'
-  gem 'rubocop',                 '0.35', require: false 
+  gem 'rubocop',                 '0.35', require: false
   gem 'shoulda-matchers',        '~> 2.8'
 end
 

@@ -1,12 +1,2 @@
-//= require jquery
-//= require jquery_ujs
 //= require angular.bootstrap
-//= require_tree ../templates
-//= require config
-//= require route/route.bootstrap
-//= require common/common.bootstrap
-//= require devise/devise.bootstrap
 //= require angular.material.bootstrap
-//= require applicationController
-//= require headerController
-//= require navigationController
