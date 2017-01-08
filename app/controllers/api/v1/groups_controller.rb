@@ -33,7 +33,7 @@ module Api
 
       def format
         if @group
-          render json: { format: @group.report_format }
+          render json: { format: @group.report_format, mark: @group.mark }
         else
           render status: 404, json: { errors: 'group not found' }
         end
