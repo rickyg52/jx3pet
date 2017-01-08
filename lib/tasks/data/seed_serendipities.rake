@@ -13,7 +13,7 @@ namespace :data do
 					{ "event": "护佑苍生", "coolDown": 7 }
 				]
 		serendipities.each do |serendipity| 
-			Serendipity.create(name: serendipity[:event], cd: serendipity[:coolDown])
+			Serendipity.find_or_create_by(name: serendipity[:event], cd: serendipity[:coolDown])
 		end
 	end
 end

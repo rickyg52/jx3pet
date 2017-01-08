@@ -28,7 +28,7 @@ namespace :data do
 					{ "event": "嘟嘟", "coolDown": 6, "Maximum":7 }
 				]
 		pets.each do |pet| 
-			p = Pet.create(name: pet[:event], min_cd: pet[:coolDown], max_cd: pet[:Maximum])
+			p = Pet.find_or_create_by(name: pet[:event], min_cd: pet[:coolDown], max_cd: pet[:Maximum])
 			if pet[:alias] 
 				Servers::Group.all.each do |group|
 					Pets::PetAlias.find_or_create_by(alias: pet[:alias], pet: p, server: group.server)
