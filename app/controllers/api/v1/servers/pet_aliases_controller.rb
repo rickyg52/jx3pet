@@ -1,15 +1,14 @@
 module Api
   module V1
-    module Groups
+    module Servers
       class PetAliasesController < Mjolnir::Api::ApiController
         
         before_action do
-          @group = Servers::Group.find_by_group_num(params[:group_id])
-          @server = @group.server if @group
+          @server = Server.find_by_id(params[:server_id])
         end
 
         before_action only:[:previous_cd, :update, :status] do
-          @pet_alias = Pets::PetAlias.where(alias: params[:id], server: @server).first if @group
+          @pet_alias = Pets::PetAlias.where(alias: params[:id], server: @server).first if @server
           if @pet_alias
             @pet = @pet_alias.pet
           else
@@ -23,14 +22,14 @@ module Api
 
         # return group list
       	def index
-          if @group 
+          if @server 
             data = []
             @server.pet_aliases.each do |p|
               data.push(representer(p))
             end
             render json: data.to_json
           else
-            render status: 404, json: { errors: 'group not found' }
+            render status: 404, json: { errors: 'server not found' }
           end
       	end
 
@@ -40,11 +39,14 @@ module Api
         # get previous cds 
         def previous_cd
           if @pet && @server
-            data = { pet: @pet.name }
-            data[:history] = []
+            data = []
+            last_trigger = Time.now
             Pets::PetSerendipity.where(server: @server, pet: @pet).last(params[:count])
               .reverse
-              .each { |serendipity| data[:history].push(serendipity_representer(serendipity))}
+              .each do |serendipity| 
+                data.push(serendipity_representer(serendipity, last_trigger))
+                last_trigger = serendipity.trigger_time
+              end
             render json: data
           else
             render status: 404, json: { errors: 'pet alias not found' }
@@ -77,11 +79,12 @@ module Api
           }
         end
 
-        def serendipity_representer(serendipity)
+        def serendipity_representer(serendipity, last_trigger)
           { 
             time: serendipity.trigger_time,
             timestamp: serendipity.trigger_time.to_i,
-            reporter: serendipity.reporter
+            reporter: serendipity.reporter,
+            diff: serendipity.diff_between(last_trigger)
           }
         end
       end

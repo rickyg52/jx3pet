@@ -19,26 +19,30 @@ Rails.application.routes.draw do
 
   namespace :api do
     scope module: :v1, constraints: Mjolnir::Api::ApiConstraints.new(version: 1, default: :true) do
-      resources :pets, only: [:create, :index, :update, :show]
+      #resources :pets, only: [:create, :update, :show]
       resources :servers, only: [:index, :show] do
         collection do
           put :show_by_name
         end
-      end
-      resources :groups, only: [:create, :index, :update, :destroy, :show] do
+
         member do
           put :last_triggers
           get :all_in_cd
           get :all_aliases
-          get :format
         end
-        resources :pet_aliases, module: :groups, only: [:create, :index, :update] do
+        resources :pets, module: :servers, only: [:show]
+        resources :pet_aliases, module: :servers, only: [:create, :index, :update] do
           member do
             put :previous_cd
             get :status
           end
           resources :pet_serendipities, module: :pet_aliases, only: [:create] do
           end
+        end
+      end
+      resources :groups, only: [:create, :index, :update, :destroy, :show] do
+        member do
+          get :format
         end
       end 
       resources :serendipities, only: [:index, :show]

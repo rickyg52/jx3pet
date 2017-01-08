@@ -14,7 +14,7 @@ module Jx3pet
 	config.generators do |g|
 	  g.factory_girl false
 	end
-
+	config.time_zone = 'Beijing'
 	config.active_record.default_timezone = :local
   end
 end

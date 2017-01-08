@@ -1,13 +1,12 @@
 module Api
   module V1
-    module Groups
+    module Servers
       module PetAliases
         class PetSerendipitiesController < Mjolnir::Api::ApiController
           
           before_action do
-            group = Servers::Group.find_by_group_num(params[:group_id])
-            if group
-              @server = group.server 
+            @server = Server.find_by_id(params[:server_id])
+            if @server
               pet_alias = Pets::PetAlias.where(alias: params[:pet_alias_id], server: @server).first
               if pet_alias
                 @pet = pet_alias.pet

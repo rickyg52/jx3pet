@@ -4,7 +4,7 @@ module Api
     class ServersController < Mjolnir::Api::ApiController
       include Concerns::Ping
       
-      before_action only:[:show, :update] do
+      before_action only:[:show, :update, :last_triggers, :all_in_cd, :all_aliases] do
         @server = Server.find_by_id(params[:id])
       end
 
@@ -48,7 +48,64 @@ module Api
         end
       end
 
+
+      def last_triggers
+        if @server
+          data = []
+          Pets::PetSerendipity.where(server: @server).last(params[:count])
+            .reverse
+            .each { |serendipity| data.push(serendipity_representer(serendipity))}
+          render json: data
+        else
+          render status: 404, json: { errors: 'server not found' }
+        end
+      end
+
+      def all_in_cd
+        if @server
+          data = []
+          @server.pet_serendipities.select('DISTINCT ON(pet_id) *').order(:pet_id, trigger_time: :desc).each do |serendipity| 
+            diff_time = serendipity.diff_between(Time.now)
+            pet = serendipity.pet
+            if (diff_time[:hour] >= pet.min_cd && diff_time[:hour] <= pet.max_cd) or (diff_time[:hour] >= 2* pet.min_cd && diff_time[:hour] <= 2* pet.max_cd) 
+              data.push(serendipity_representer(serendipity))
+            end
+          end
+          render json: data
+        else
+          render status: 404, json: { errors: 'server not found' }
+        end
+      end
+
+      def all_aliases
+        if @server
+          data = []
+          @server.pet_aliases.each do |pet_alias| 
+            data.push({ pet: pet_alias.pet.name, alias: pet_alias.alias })
+          end
+          render json: data
+        else
+          render status: 404, json: { errors: 'server not found' }
+        end        
+      end
+
       private 
+
+      def serendipity_representer(serendipity)
+        data = { 
+          time: serendipity.trigger_time,
+          timestamp: serendipity.trigger_time.to_i,
+          reporter: serendipity.reporter,
+          diff: serendipity.diff_between(Time.now)
+        }
+        pet_alias = @server.pet_aliases.where(pet: serendipity.pet).last
+        if pet_alias
+          data[:pet] = pet_alias.alias
+        else
+          data[:pet] = serendipity.pet.name
+        end
+        data
+      end
 
       def represent_server(server)
         data = { 
