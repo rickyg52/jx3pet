@@ -31,6 +31,7 @@ gem 'jquery-rails',              '~> 4.2.0'
 gem 'paperclip',                 '~> 4.3'
 gem 'representable',             '~> 2.3'
 gem 'rolify',                    '~> 4.1'
+gem 'delayed_job'
 
 gem 'sass-rails',                '~> 5.0'
 
