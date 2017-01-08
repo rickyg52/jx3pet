@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161224091924) do
+ActiveRecord::Schema.define(version: 20170108045347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20161224091924) do
     t.integer "server_id",                                    null: false
     t.bigint  "group_num",                                    null: false
     t.string  "report_format", default: "{time} {alias} 502", null: false
+    t.string  "mark",          default: "502",                null: false
     t.index ["group_num"], name: "index_groups_on_group_num", using: :btree
     t.index ["server_id"], name: "index_groups_on_server_id", using: :btree
   end

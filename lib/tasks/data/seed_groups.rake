@@ -8,8 +8,7 @@ namespace :data do
 					{ "serverName": "战无不胜", "groupNum": "552914430" },
 					{ "serverName": "战无不胜", "groupNum": "375092502" },
 					{ "serverName": "平步青云", "groupNum": "556757444" },
-					{ "serverName": "雪絮金屏", "groupNum": "155303411" },
-					{ "serverName": "长安城", "groupNum": "195048761" }
+					{ "serverName": "梦江南", "groupNum": "559789477" }
 				]
 		groups.each do |g| 
 			s = Server.find_by_name(g[:serverName])
