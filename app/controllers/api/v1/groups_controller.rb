@@ -14,7 +14,7 @@ module Api
     	def index
         groups = []
         Servers::Group.all.each do |g|
-          groups.push({ num: g.group_num, server: g.server.name })
+          groups.push({ num: g.group_num, server: g.server.name, format: g.report_format, mark: g.mark })
         end
         render json: groups.to_json
     	end
