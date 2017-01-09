@@ -18,7 +18,6 @@ module Api
           def create
             if @server && @pet && params[:time] && params[:reporter]
               time = Time.at(params[:time].to_i)
-              byebug
               last_pet = Pets::PetSerendipity.where(server: @server, pet: @pet).last
               if !last_pet || last_pet.diff_between(time)[:hour] >= @pet.min_cd
                 Pets::PetSerendipity.create(trigger_time: time, reporter: params[:reporter].to_i, pet: @pet, server: @server)
