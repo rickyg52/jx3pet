@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     scope module: :v1, constraints: Mjolnir::Api::ApiConstraints.new(version: 1, default: :true) do
-      #resources :pets, only: [:create, :update, :show]
+      # resources :pets, only: [:create, :update, :show]
       resources :servers, only: [:index, :show] do
         collection do
           put :show_by_name
@@ -44,12 +44,11 @@ Rails.application.routes.draw do
         member do
           get :format
         end
-      end 
+      end
       resources :serendipities, only: [:index, :show]
     end
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root to: "home#index"
-  
+  root to: 'home#index'
 end

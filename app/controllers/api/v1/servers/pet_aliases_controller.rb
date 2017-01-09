@@ -2,12 +2,11 @@ module Api
   module V1
     module Servers
       class PetAliasesController < Mjolnir::Api::ApiController
-        
         before_action do
           @server = Server.find_by_id(params[:server_id])
         end
 
-        before_action only:[:previous_cd, :update, :status] do
+        before_action only: [:previous_cd, :update, :status] do
           @pet_alias = Pets::PetAlias.where(alias: params[:id], server: @server).first if @server
           if @pet_alias
             @pet = @pet_alias.pet
@@ -17,12 +16,12 @@ module Api
         end
 
         # add new group, associate to server
-      	def create
-      	end
+        def create
+        end
 
         # return group list
-      	def index
-          if @server 
+        def index
+          if @server
             data = []
             @server.pet_aliases.each do |p|
               data.push(representer(p))
@@ -31,22 +30,22 @@ module Api
           else
             render status: 404, json: { errors: 'server not found' }
           end
-      	end
+        end
 
-      	def update
-      	end
+        def update
+        end
 
-        # get previous cds 
+        # get previous cds
         def previous_cd
           if @pet && @server
             data = []
             last_trigger = Time.now
             Pets::PetSerendipity.where(server: @server, pet: @pet).last(params[:count])
               .reverse
-              .each do |serendipity| 
-                data.push(serendipity_representer(serendipity, last_trigger))
-                last_trigger = serendipity.trigger_time
-              end
+            _each do |serendipity|
+              data.push(serendipity_representer(serendipity, last_trigger))
+              last_trigger = serendipity.trigger_time
+            end
             render json: data
           else
             render status: 404, json: { errors: 'pet alias not found' }
@@ -65,22 +64,23 @@ module Api
               diff: last_trigger.diff_between(Time.now),
               status: last_trigger.in_cd?
             }
-            render json:data
+            render json: data
           else
             render status: 404, json: { errors: 'pet alias not found' }
           end
         end
-        private 
+
+        private
 
         def representer(pet_alias)
-          { 
+          {
             pAlias: pet_alias.alias,
             pet: pet_alias.pet.name
           }
         end
 
         def serendipity_representer(serendipity, last_trigger)
-          { 
+          {
             time: serendipity.trigger_time,
             timestamp: serendipity.trigger_time.to_i,
             reporter: serendipity.reporter,

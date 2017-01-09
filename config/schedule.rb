@@ -22,3 +22,11 @@
 every 3.minute do
   rake 'servers:server_status_check'
 end
+
+every :tuesday, :at => '8am' do # Update server infos
+  rake 'data:seed_servers'
+end
+
+every :thursday, :at => '8am' do # Update server infos
+  rake 'data:seed_servers'
+end

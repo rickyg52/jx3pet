@@ -3,7 +3,6 @@ module Api
     module Servers
       module PetAliases
         class PetSerendipitiesController < Mjolnir::Api::ApiController
-          
           before_action do
             @server = Server.find_by_id(params[:server_id])
             if @server

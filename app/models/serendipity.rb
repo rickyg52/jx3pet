@@ -1,3 +1,3 @@
 class Serendipity < ActiveRecord::Base
-	validates_presence_of :name, :cd
+  validates_presence_of :name, :cd
 end
