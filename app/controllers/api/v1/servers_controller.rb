@@ -52,8 +52,7 @@ module Api
         if @server
           data = []
           Pets::PetSerendipity.where(server: @server).last(params[:count])
-            .reverse
-          _each { |serendipity| data.push(serendipity_representer(serendipity)) }
+            .reverse.each { |serendipity| data.push(serendipity_representer(serendipity)) }
           render json: data
         else
           render status: 404, json: { errors: 'server not found' }

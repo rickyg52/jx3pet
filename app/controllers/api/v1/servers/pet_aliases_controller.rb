@@ -41,8 +41,7 @@ module Api
             data = []
             last_trigger = Time.now
             Pets::PetSerendipity.where(server: @server, pet: @pet).last(params[:count])
-              .reverse
-            _each do |serendipity|
+              .reverse.each do |serendipity|
               data.push(serendipity_representer(serendipity, last_trigger))
               last_trigger = serendipity.trigger_time
             end
