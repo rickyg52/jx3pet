@@ -10,7 +10,7 @@ module Api
               if pet_alias
                 @pet = pet_alias.pet
               else
-                @pet = Pet.find_by_name(params[:id])
+                @pet = Pet.find_by_name(params[:pet_alias_id])
               end
             end
           end
