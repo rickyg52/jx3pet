@@ -10,7 +10,7 @@ namespace :data do
       { "event": '稚子心', "coolDown": 5, "Maximum": 7, "alias": '甜豆' },
       { "event": '红衣歌', "coolDown": 5, "Maximum": 7, "alias": '红绸' },
       { "event": '归乡路', "coolDown": 5, "Maximum": 7, "alias": '童心客' },
-      { "event": '荆轲刺', "coolDown": 5, "Maximum": 7, "alias": '荆轲刺' },
+      { "event": '荆轲刺', "coolDown": 5, "Maximum": 7, "alias": '黑鸡' },
       { "event": '沙海谣', "coolDown": 5, "Maximum": 7, "alias": '刀豆' },
       { "event": '枫林酒', "coolDown": 5, "Maximum": 7, "alias": '枫林客' },
       { "event": '青草歌', "coolDown": 5, "Maximum": 7, "alias": '狐狸' },
