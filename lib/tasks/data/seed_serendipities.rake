@@ -3,7 +3,7 @@ namespace :data do
 
   task seed_serendipities: :environment do
     serendipities = [
-      { "event": '三尺青峰', "coolDown": 14 },
+      { "event": '三尺青锋', "coolDown": 14 },
       { "event": '三山四海', "coolDown": 14 },
       { "event": '塞外宝驹', "coolDown": 14 },
       { "event": '阴阳两界', "coolDown": 14 },

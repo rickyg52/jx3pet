@@ -2,7 +2,7 @@ namespace :database do
   desc 'restore pet serendipities'
 
   task restore_pet_serendipities: :environment do
-    file = File.read('12.24.json')
+    file = File.read('1.9.json')
     data_hash = JSON.parse(file)
     data_hash['objects'][0]['rows'].each do |r|
       # r[1]: name r[2]: time r[3]: server
