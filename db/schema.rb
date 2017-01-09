@@ -69,11 +69,15 @@ ActiveRecord::Schema.define(version: 20170108045347) do
   end
 
   create_table "servers", force: :cascade do |t|
-    t.string  "name",             null: false
-    t.string  "region",           null: false
-    t.integer "source_server_id"
-    t.string  "ip",               null: false
-    t.integer "port",             null: false
+    t.string   "name",             null: false
+    t.string   "region",           null: false
+    t.boolean  "status"
+    t.datetime "history"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "source_server_id"
+    t.string   "ip",               null: false
+    t.integer  "port",             null: false
     t.index ["name"], name: "index_servers_on_name", using: :btree
   end
 

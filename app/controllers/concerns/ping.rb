@@ -1,6 +1,6 @@
 module Concerns
 	module Ping
-		def ping(server) 
+		def ping(server)
 			begin
 				Timeout.timeout(5) do
 					s = TCPSocket.new(server.ip, server.port)

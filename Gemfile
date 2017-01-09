@@ -36,11 +36,11 @@ gem 'delayed_job'
 gem 'sass-rails',                '~> 5.0'
 
 gem 'coffee-rails',              '~> 4.1'
-
 gem 'uglifier',                  '~> 2.7'
 gem 'validates_timeliness',      '~> 3.0'
 gem 'validates_email_format_of', '~> 1.6'
 gem 'will_paginate',             '~> 3.0'
+gem 'whenever',                  '~> 0.9.7'
 
 gem 'font_assets',               '~> 0.1'
 

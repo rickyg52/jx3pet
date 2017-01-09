@@ -2,8 +2,8 @@ module Api
   module V1
     # create jobs and return HTTP response
     class ServersController < Mjolnir::Api::ApiController
-      include Concerns::Ping
-      
+      include PingHelper
+
       before_action only:[:show, :update, :last_triggers, :all_in_cd, :all_aliases] do
         @server = Server.find_by_id(params[:id])
       end
@@ -64,10 +64,10 @@ module Api
       def all_in_cd
         if @server
           data = []
-          @server.pet_serendipities.select('DISTINCT ON(pet_id) *').order(:pet_id, trigger_time: :desc).each do |serendipity| 
+          @server.pet_serendipities.select('DISTINCT ON(pet_id) *').order(:pet_id, trigger_time: :desc).each do |serendipity|
             diff_time = serendipity.diff_between(Time.now)
             pet = serendipity.pet
-            if (diff_time[:hour] >= pet.min_cd && diff_time[:hour] <= pet.max_cd) or (diff_time[:hour] >= 2* pet.min_cd && diff_time[:hour] <= 2* pet.max_cd) 
+            if (diff_time[:hour] >= pet.min_cd && diff_time[:hour] <= pet.max_cd) or (diff_time[:hour] >= 2* pet.min_cd && diff_time[:hour] <= 2* pet.max_cd)
               data.push(serendipity_representer(serendipity))
             end
           end
@@ -80,19 +80,19 @@ module Api
       def all_aliases
         if @server
           data = []
-          @server.pet_aliases.each do |pet_alias| 
+          @server.pet_aliases.each do |pet_alias|
             data.push({ pet: pet_alias.pet.name, alias: pet_alias.alias })
           end
           render json: data
         else
           render status: 404, json: { errors: 'server not found' }
-        end        
+        end
       end
 
-      private 
+      private
 
       def serendipity_representer(serendipity)
-        data = { 
+        data = {
           time: serendipity.trigger_time,
           timestamp: serendipity.trigger_time.to_i,
           reporter: serendipity.reporter,
@@ -108,13 +108,13 @@ module Api
       end
 
       def represent_server(server)
-        data = { 
-          name: server.name, 
-          id: server.id, 
-          open: ping(server), 
+        data = {
+          name: server.name,
+          id: server.id,
+          open: s.source_server.nil? ? s.status : s.source_server.status
         }
-        data[:sourceServer] =  { 
-              name: server.source_server.name, 
+        data[:sourceServer] =  {
+              name: server.source_server.name,
               id: server.source_server.id
         } if server.source_server
         data
