@@ -109,7 +109,7 @@ module Api
         data = {
           name: server.name,
           id: server.id,
-          open: s.source_server.nil? ? s.status : s.source_server.status
+          open: server.source_server.nil? ? server.status : server.source_server.status
         }
         data[:sourceServer] = {
           name: server.source_server.name,

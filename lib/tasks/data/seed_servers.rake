@@ -10,13 +10,13 @@ namespace :data do
         server_info = line.split(' ')
         server = Server.find_by_name(server_info[1])
         if server
-	        source_server = Server.find_by_name(server_info[10]) unless server_info[10].equal? server_info[1]
+          source_server = server_info[10] == server_info[1] ? nil : Server.find_by_name(server_info[10])
 	        server.update(region: server_info[0], ip: server_info[3], port: server_info[4], source_server: source_server)
 	        server.save
         else
 	        server = Server.new(name: server_info[1], region: server_info[0], ip: server_info[3], port: server_info[4])
 	        # if the current server is not root server, find root server
-	        server.source_server = Server.find_by_name(server_info[10]) unless server_info[10].equal? server_info[1]
+          server.source_server = Server.find_by_name(server_info[10]) unless server_info[10] == server_info[1]
 	        server.save
 	      end
       end
