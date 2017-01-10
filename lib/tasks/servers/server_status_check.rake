@@ -13,7 +13,7 @@ namespace :servers do
   end
 
   def ping(ip, port)
-    Timeout.timeout(1) do
+    Timeout.timeout(3) do
       s = TCPSocket.new(ip, port)
       s.close
       return true
