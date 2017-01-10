@@ -65,7 +65,7 @@ module Api
           @server.pet_serendipities.select('DISTINCT ON(pet_id) *').order(:pet_id, trigger_time: :desc).each do |serendipity|
             diff_time = serendipity.diff_between(Time.now)
             pet = serendipity.pet
-            if (diff_time[:hour] >= pet.min_cd && diff_time[:hour] <= pet.max_cd) || (diff_time[:hour] >= 2 * pet.min_cd && diff_time[:hour] <= 2 * pet.max_cd)
+            if (diff_time[:hour] >= pet.min_cd && diff_time[:hour] < pet.max_cd) || (diff_time[:hour] >= 2 * pet.min_cd && diff_time[:hour] < 2 * pet.max_cd)
               data.push(serendipity_representer(serendipity))
             end
           end
