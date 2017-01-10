@@ -6,9 +6,9 @@ module Pets
     validates_presence_of :pet, :server, :reporter, :trigger_time
 
     def in_cd?
-      if pet.min_cd <= diff_between(Time.now)[:hour] && diff_between(Time.now)[:hour] <= pet.max_cd
+      if pet.min_cd <= diff_between(Time.now)[:hour] && diff_between(Time.now)[:hour] < pet.max_cd
         true
-      elsif 2 * pet.min_cd <= diff_between(Time.now)[:hour] && diff_between(Time.now)[:hour] <= 2 * pet.max_cd
+      elsif 2 * pet.min_cd <= diff_between(Time.now)[:hour] && diff_between(Time.now)[:hour] < 2 * pet.max_cd
         true
       else
         false
