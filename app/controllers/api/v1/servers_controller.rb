@@ -32,7 +32,7 @@ module Api
 
       # return server status, source server
       def show
-        if server
+        if @server
           render json: represent_server(@server).to_json
         else
           render status: 404, json: { errors: 'server not found' }
