@@ -19,7 +19,7 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 3.minute do
+every 1.minute do
   rake 'servers:server_status_check'
 end
 
