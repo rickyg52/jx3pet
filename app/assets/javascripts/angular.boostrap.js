@@ -11,6 +11,7 @@
 //= require angular-cropme/cropme
 //= require underscore/underscore-min
 //= require angular-underscore/angular-underscore.min
+//= require bowser/bowser.min
 //= require psl/dist/psl
 //= require angular-timeago/dist/angular-timeago.min
 //= require angular-utils-pagination/dirPagination
