@@ -1,5 +1,5 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   remote: http://B3U5fzTniCxwgn4e19Cj@gem.fury.io/shirren/
   specs:
     actioncable (5.0.1)
