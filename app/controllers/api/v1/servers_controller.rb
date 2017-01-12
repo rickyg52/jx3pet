@@ -67,6 +67,8 @@ module Api
             pet = serendipity.pet
             if (diff_time[:hour] >= pet.min_cd && diff_time[:hour] < pet.max_cd) || (diff_time[:hour] >= 2 * pet.min_cd && diff_time[:hour] < 2 * pet.max_cd)
               data.push(serendipity_representer(serendipity))
+            elsif !@server.open? && diff_time[:hour] >= pet.min_cd
+              data.push(serendipity_representer(serendipity))
             end
           end
           render json: data

@@ -11,7 +11,7 @@ namespace :data do
         server = Server.find_by_name(server_info[1])
         if server
           source_server = server_info[10] == server_info[1] ? nil : Server.find_by_name(server_info[10])
-	        server.update(region: server_info[0], ip: server_info[3], port: server_info[4], source_server: source_server)
+	        server.update(status: nil, region: server_info[0], ip: server_info[3], port: server_info[4], source_server: source_server)
 	        server.save
         else
 	        server = Server.new(name: server_info[1], region: server_info[0], ip: server_info[3], port: server_info[4])
