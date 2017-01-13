@@ -6,9 +6,11 @@ namespace :servers do
       next if s.source_server
       result = ping(s.ip, s.port)
       next if s.status == result
-      s.history = Time.now unless s.status
-      s.status = result
-      s.save
+      if result ==  ping(s.ip, s.port)
+        s.history = Time.now unless s.status
+        s.status = result
+        s.save
+      end
     end
   end
 
