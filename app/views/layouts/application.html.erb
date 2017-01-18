@@ -1,14 +1,23 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Jx3pet</title>
-    <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
-    <%= yield %>
-  </body>
+<html ng-app="jx3pet" class="no-js" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JX3PET 宠物CD查询</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <!--
+    TODO: This should not be in the template, instead we should load this when we want to
+    charge our customers via Stripe
+  -->
+  <!-- <script type="text/javascript" src="https://js.stripe.com/v2/"></script> -->
+  <%= javascript_include_tag 'application' %>
+  <script src="https://use.typekit.net/kqt8lbi.js"></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+</head>
+<%= csrf_meta_tags %>
+<body layout="column" ng-controller="ApplicationController" layout-fill>
+  <md-progress-linear id="filmpond-state-loader" md-mode="{{stateLoadingStatus}}"></md-progress-linear>
+  <div ui-view="layout" class="fade fast"></div>
+</body>
 </html>
