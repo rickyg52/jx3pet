@@ -1,0 +1,13 @@
+//= require controllers/ApplicationController
+//= require controllers/ControlPanelController
+//= require controllers/MainController
+//= require controllers/MemoryController
+//= require controllers/MessagesController
+//= require controllers/PerformanceController
+//= require controllers/ProfileController
+//= require controllers/SearchController
+//= require controllers/TableController
+//= require controllers/TodoController
+//= require controllers/UsageController
+//= require controllers/VisitorsController
+//= require controllers/WarningsController

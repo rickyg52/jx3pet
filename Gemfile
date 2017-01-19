@@ -23,6 +23,7 @@ gem 'puma', '~> 3.0'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
+gem 'angular-rails-templates',    '~> 1.0.2'
 gem 'bower-rails',               '~> 0.10'
 gem 'friendly_id',               '~> 5.1'
 gem 'devise',                    '~> 4.2'
